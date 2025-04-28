@@ -1,34 +1,32 @@
-document.getElementById("akanForm").addEventListener("submit", function (e){preventDefault()})
+document.getElementById("akanForm").addEventListener("submit",function (event){
+   event.preventDefault()
+   const dateInput = document.getElementById("date")
+   const genderInput = document.getElementById("gender")
+   const result = document.getElementById("result")
 
-const dateInput = document.getElementById("date")
-const gender = document.getElementById("gender")
+   const dateValue = dateInput.value
+   const genderValue = genderInput.value
 
- if ( dateInput === "") {
-    document.getElementById("result").innerText = "enter birthdate"; return
- }
- if (gender ==="") {
-    document.getElementById("result").innerText = "select your gender"; return
- }
- const date = new Date(dateInput)
- const day = date.getDate()
- const month = date.getMonth()
- const year = date.getFullYear()
+   if (dateValue === "") {
+      result.innerText = "enter your birthdate"
+      return
+   }
+   if (genderValue === ""){
+      result.innerText = "select your gender"
+      return
+   }
+   const date = new Date(dateValue)
+   const day = date.getDay()
 
- const cc = Math.floor(year/100)
- const yy = year % 100
+   const maleName = ["Kwasi","Kwadwo","Kwabena","Kwaku","Yaw","Kofi","Kwame"]
+   const femaleName = ["Akosua","Adwoa","Abena","Akua","Yaa","Afua","Ama"]
 
- const d = Math.floor(
-    ((cc/4-2*cc-1) + (5*yy/4) + (26*(month+1)/10)+day)%7)
+   let akanName = ""
 
- const dayIndex = ((d+7) % 7)
- const maleNames = ["Kwasi","Kwadwo","Kwabena","Kwaku","Yaw","Kofi","Kwame"]
- const femaleNames = ["Akosua","Adwoa","Abenaa","Akua","Yaa","Afua","Ama"]
- 
- let akanName;
- if (gender === "male"){
-    akanName = maleNames[dayIndex]
- }
- if (gender === "female"){
-    akanName = femaleNames[dayIndex]
- }
- document.getElementById("result").innerText='your Akan name is :${akanName}'
+   if (genderValue === "male") {
+      akanName = maleNames[day]
+   } else if (genderValue === "female") {
+      akanName = femaleName[day]
+   }
+   result.innerText = `Your Akan name is:${akanName}`
+})
