@@ -24,7 +24,7 @@ document.getElementById("akanForm").addEventListener("submit",function (event){
    let akanName = ""
 
    if (genderValue === "male") {
-      akanName = maleNames[day]
+      akanName = maleNames[day] 
    } else if (genderValue === "female") {
       akanName = femaleName[day]
    }
